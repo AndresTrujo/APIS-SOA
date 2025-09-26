@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import carlos.trujo.rentas.models.Clientes;
+import carlos.trujo.rentas.models.Cliente;
 import carlos.trujo.rentas.repositories.IClientesRepository;
 
 @Service
@@ -14,20 +14,20 @@ public class ClienteService {
     @Autowired
     IClientesRepository clienteRepository;
 
-    public ArrayList<Clientes> getClientes(){
-        return (ArrayList<Clientes>) clienteRepository.findAll();
+    public ArrayList<Cliente> getClientes(){
+        return (ArrayList<Cliente>) clienteRepository.findAll();
     }
 
-    public Clientes saveCliente(Clientes cliente){
+    public Cliente saveCliente(Cliente cliente){
         return clienteRepository.save(cliente);
     }
 
-    public Optional<Clientes> getById(Long id){
+    public Optional<Cliente> getById(Long id){
         return clienteRepository.findById(id);
     }
 
-    public Clientes updateById(Clientes request, Long id){
-        Clientes cliente = clienteRepository.findById(id).get();
+    public Cliente updateById(Cliente request, Long id){
+        Cliente cliente = clienteRepository.findById(id).get();
 
         cliente.setNombre(request.getNombre());
         cliente.setRFC(request.getRFC());

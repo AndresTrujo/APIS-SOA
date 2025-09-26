@@ -46,9 +46,9 @@ public class UserController {
         boolean ok = this.userService.deleteUser(id);
         
         if(ok){
-            return "Usuario con Id"+ id + "eliminado";
+            return "Usuario con Id "+ id + " eliminado";
         }else{
-            return "Usuario con Id"+ id + "no eliminado";
+            return "Usuario con Id "+ id + " no eliminado";
         }
     }
 
