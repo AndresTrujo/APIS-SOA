@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.Tarea.Models.ClienteModel;
 
 import com.example.Tarea.Models.PaqueteModel;
 import com.example.Tarea.Services.ClienteService;
@@ -42,7 +45,11 @@ public class PaqueteController {
      * Procesa el formulario para guardar un cliente nuevo o actualizado.
      */
     @PostMapping("/guardar")
-    public String guardarPaquete(@ModelAttribute("paquete") PaqueteModel paquete) {
+    public String guardarPaquete(@ModelAttribute("paquete") PaqueteModel paquete, @RequestParam("user") Integer clienteId) {
+        // Buscar el cliente por ID y asignarlo al paquete
+        ClienteModel cliente = clienteService.getClienteById(clienteId)
+            .orElseThrow(() -> new IllegalArgumentException("ID de cliente inválido: " + clienteId));
+        paquete.setUser(cliente);
         paqueteService.savePaquete(paquete);
         return "redirect:/web/paquetes"; // Redirige a la página principal
     }

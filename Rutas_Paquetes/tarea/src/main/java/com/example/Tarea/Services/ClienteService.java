@@ -24,6 +24,11 @@ public class ClienteService {
     }
 
     public ClienteModel saveCliente(ClienteModel cliente) {
+        // Si el cliente tiene ID y ya existe, no lo guardes de nuevo
+        if (cliente.getId() != null && clienteRepository.existsById(cliente.getId())) {
+            // Ya existe, no crear duplicado
+            return cliente;
+        }
         return clienteRepository.save(cliente);
     }
 

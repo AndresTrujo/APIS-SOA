@@ -10,6 +10,7 @@ import jakarta.persistence.Table;
 import java.sql.Timestamp;
 import java.math.BigDecimal;
 import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 
@@ -35,6 +36,7 @@ public class PaqueteModel {
     private String estado;
 
     @Column(name="fecha_entrega_estimada")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date fecha_entrega_estimada;
 
     @Column(name="created_at")

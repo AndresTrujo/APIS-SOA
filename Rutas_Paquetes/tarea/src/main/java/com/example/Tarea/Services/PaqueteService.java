@@ -27,6 +27,11 @@ public class PaqueteService {
 
     // Método para guardar o actualizar un paquete
     public PaqueteModel savePaquete(PaqueteModel paquete) {
+        // Si el paquete tiene ID y ya existe, no lo guardes de nuevo
+        if (paquete.getId() != null && paqueteRepository.existsById(paquete.getId())) {
+            // Ya existe, no crear duplicado
+            return paquete;
+        }
         return paqueteRepository.save(paquete);
     }
 
